@@ -1,24 +1,5 @@
 from Function import *
 
-def readUser():
-    user = []
-
-    filename = "data/user.csv"
-    with open(filename, "r") as file:
-        for line in file:
-            dict = {}
-            tempUser = CSVParser(line)
-            dict["id"] = tempUser[0]
-            dict["username"] = tempUser[1]
-            dict["nama"] = tempUser[2]
-            dict["alamat"] = tempUser[3]
-            dict["password"] = tempUser[4]
-            dict["role"] = tempUser[5]
-
-            user.append(dict)
-
-    return user
-
 def register():    
     listUser = readUser()
     listUsername = makeList(listUser, "username")
