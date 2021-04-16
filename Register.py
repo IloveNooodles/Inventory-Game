@@ -1,4 +1,4 @@
-from function import *
+from Function import *
 
 def readUser():
     user = []

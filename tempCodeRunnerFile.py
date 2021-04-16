@@ -1,1 +1,1 @@
-print(f"User {username} telah berhasil register kedalam Kantong Ajaib")
+== HELP ======")

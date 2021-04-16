@@ -11,6 +11,17 @@ def checkFunction(list, checkItem):
         if item == checkItem :
             return True
 
+def searchFunction(list, checkItem, message):
+    idx = -1
+    for i in range(len(list)):
+        if checkItem == checkItem:
+            idx = i
+            break
+    if idx == -1:
+        return f"{message}"
+    else:
+        return idx
+
 def makeCsv(): #membuat csv dari fucntion
     filename = "data/user.csv"
     with open (filename, 'w') as file:
