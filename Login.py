@@ -27,7 +27,11 @@ def login():
             for i in range(len(listUser)):
                 if username == listUser[i]['username']:
                     checkPassword = listUser[i]['password']
-        
+
+            if (checkPassword != password):
+                print("Username atau password salah!")
+                print("")
+
         print()
         print(f"Halo {username}! Selamat datang di Kantong Ajaib")
         print()

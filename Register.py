@@ -5,7 +5,7 @@ def register():
     listUsername = makeList(listUser, "username")
     filename = 'data/user.csv'
 
-    nama = input("Masukan nama: ")
+    nama = input("Masukan nama: ").title()
     username = input("Masukan username: ")
 
     while checkFunction(listUsername, username):
@@ -17,8 +17,8 @@ def register():
     id = str(len(listUser))
     role = "user"
 
-    # content = function.lineParser(id, username, nama, alamat, password, role)
-    # function.writeFile(filename, content)
+    content = lineParser(id, username, nama, alamat, password, role)
+    writeFile(filename, content)
 
     print()
     print(f"User {username} telah berhasil register kedalam Kantong Ajaib.")

@@ -45,7 +45,7 @@ def makeCsv(): #membuat csv dari fucntion
     
     filename = "data/gadget_return_history.csv"
     with open (filename, 'w') as file:
-        file.write("id;id_pengambil;id_consumable;tanggal_peminjaman;jumlah")
+        file.write("id;id_pengambil;id_gadget;tanggal_peminjaman;jumlah")
 
 def CSVParser(lines): #Memparse CSV ke dalam bentuk list
     listReturn = []

@@ -5,6 +5,13 @@ from Login import *
 
 import sys
 
+user = []
+gadget = []
+consumables = []
+gadgetBorrow = []
+gadgetReturn = []
+consumableHistory = []
+
 print("Loading...")
 print()
 
@@ -25,3 +32,5 @@ while True:
 
     if text == "login":
         login()
+    elif text == "register":
+        register()
