@@ -26,9 +26,8 @@ def findFolder():
     directory = os.listdir(directory)
 
     if args.folder in directory:
-        loadFolder()
         print(f'Selamat datang di "Kantong Ajaib!"')
-
+        return loadFolder()
     # else:
     #     print("Tidak ada nama folder yang diberikan!")
     #     print("Usage: python kantongajaib.py <nama_folder>")

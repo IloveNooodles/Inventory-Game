@@ -12,14 +12,24 @@ def checkPath(folderName):
     else:
         return False
 
-def save(folderName):
+def save(filename, list):
+
+    folderName = input("Masukan nama Folder penyimpanan: ")
 
     if checkPath(folderName):
         path = os.getcwd()
-        path += f"\{folderName}"
-        makeCsv()
+        path += f"\{folderName}\{filename}"
+        
+        for line in list:
+            writeFile(path, line)
+
     else:
         os.mkdir(folderName)
-        path += f"\{folderName}"
-        makeCsv()
-    
+        path += f"\{folderName}\{filename}"
+
+        for line in list:
+            writeFile(path, line)
+
+    print("Saving...")
+    print(f"Data telah disimpan pada folder {folderName}!")
+

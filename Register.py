@@ -17,9 +17,21 @@ def register():
     id = str(len(listUser))
     role = "user"
 
-    content = lineParser(id, username, nama, alamat, password, role)
-    writeFile(filename, content)
+    tempDict = {
+        'id' : id,
+        'username' : username,
+        'nama' : nama,
+        'alamat' : alamat,
+        'password' : password,
+        'role' : role
+    }
 
     print()
     print(f"User {username} telah berhasil register kedalam Kantong Ajaib.")
     print()
+
+    listUser.append(tempDict)
+    return listUser
+
+    # content = lineParser(id, username, nama, alamat, password, role)
+    # appendFile(filename, content)

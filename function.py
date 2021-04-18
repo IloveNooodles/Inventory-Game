@@ -3,6 +3,10 @@ def readFile(filename):
         contents = file.read()
 
 def writeFile(filename, text):
+    with open(filename, 'w') as file:
+        file.write(f"{text}\n")
+
+def appendFile(filename, text):
     with open(filename, 'a') as file:
         file.write(f"{text}\n")
 
@@ -22,7 +26,7 @@ def searchFunction(list, checkItem, message):
     else:
         return idx
 
-def makeCsv(): #membuat csv dari fucntion
+def makeCsv(): #membuat csv dari fucntion, cuma kepake sekali
     filename = "data/user.csv"
     with open (filename, 'w') as file:
         file.write("id;username;nama;alamat;password;role")
