@@ -1,10 +1,10 @@
 from Function import *
 
-def login():
+def login(folder):
     username = input("Masukan username: ")
     password = input("Masukan password: ")
 
-    listUser = readUser()
+    listUser = readUser(folder)
     checkPassword = ''
 
     for i in range(len(listUser)):

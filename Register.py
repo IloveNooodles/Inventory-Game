@@ -1,7 +1,7 @@
 from Function import *
 
-def register():    
-    listUser = readUser()
+def register(listUser):    
+    
     listUsername = makeList(listUser, "username")
     filename = 'data/user.csv'
 
@@ -9,6 +9,7 @@ def register():
     username = input("Masukan username: ")
 
     while checkFunction(listUsername, username):
+        print()
         print("Username sudah ada, silahkan gunakan username yang lain!")
         username = input("Masukan username: ")
 

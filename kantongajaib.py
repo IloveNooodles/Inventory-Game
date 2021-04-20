@@ -15,7 +15,6 @@ gadgetBorrow = []
 gadgetReturn = []
 consumableHistory = []
 listFile = ['user.csv', 'gadget.csv', 'gadget_return_history.csv', 'gadget_borrow_history.csv', 'consumable.csv', 'consumable_history.csv']
-zipFile = [user, gadget, gadgetReturn, gadgetBorrow, consumables, consumableHistory]
 
 print()
 print("Loading...")
@@ -24,29 +23,38 @@ print()
 Folder = foundFolder()
 
 if Folder:
-    Folder = findFolder()
-    print(Folder)
+    Folder = findFolder() 
+    user = readUser(Folder)
 else:
     print("Tidak ada nama folder yang diberikan!")
     print("Usage: python kantongajaib.py <nama_folder>")
     sys.exit()
 
+zipFile = [user, gadget, gadgetReturn, gadgetBorrow, consumables, consumableHistory]
+
 while True:
     
     print()
-    text = input()
+    text = input().lower()
     print()
 
     if text == "login":
-        login()
+        login(Folder)
     elif text == "register":
-        user = register()
+        register(user)
+        print(user)
     elif text == "help":
         help()
     elif text == "save":
+        
+        folderName = input("Masukan nama Folder penyimpanan: ")
+        makeDir(folderName)
 
         for Csv, CsvContent in zip(listFile, zipFile):
-            save(Csv, CsvContent)
+            save(Csv, CsvContent, folderName)
+
+        print("Saving...")
+        print(f"Data telah disimpan pada folder {folderName}!")
 
     elif text == "exit":
 

@@ -12,24 +12,25 @@ def checkPath(folderName):
     else:
         return False
 
-def save(filename, list):
-
-    folderName = input("Masukan nama Folder penyimpanan: ")
+def makeDir(folderName):
+    listFile = ['user.csv', 'gadget.csv', 'gadget_return_history.csv', 'gadget_borrow_history.csv', 'consumable.csv', 'consumable_history.csv']
 
     if checkPath(folderName):
-        path = os.getcwd()
-        path += f"\{folderName}\{filename}"
-        
-        for line in list:
-            writeFile(path, line)
-
+        for folder, subfolder, files in os.walk(folderName):
+            for file in files:
+                if file in listFile:
+                    path = os.path.join(folderName, file)
+                    os.remove(path)
+                    
     else:
         os.mkdir(folderName)
-        path += f"\{folderName}\{filename}"
 
-        for line in list:
-            writeFile(path, line)
+def save(filename, list, folderName):
+    path = os.getcwd()
+    path += f"\{folderName}\{filename}"
 
-    print("Saving...")
-    print(f"Data telah disimpan pada folder {folderName}!")
+    for i in range(len(list)):
+        toCSV(path, list[i])
+
+    
 

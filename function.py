@@ -1,3 +1,32 @@
+import os
+import sys
+import argparse
+
+def makeCsv(): #membuat csv dari fucntion, cuma kepake sekali
+    filename = "data/user.csv"
+    with open (filename, 'w') as file:
+        file.write("id;username;nama;alamat;password;role")
+    
+    filename = "data/gadget.csv"
+    with open (filename, 'w') as file:
+        file.write("id;nama;deskripsi;jumlah;rarity;tahun_ditemukan")
+    
+    filename = "data/consumable.csv"
+    with open (filename, 'w') as file:
+        file.write("id;nama;deskripsi;jumlah;rarity")
+    
+    filename = "data/consumable_history.csv"
+    with open (filename, 'w') as file:
+        file.write("id;id_pengambil;id_consumable;tanggal_peminjaman;jumlah")
+    
+    filename = "data/gadget_borrow_history.csv"
+    with open (filename, 'w') as file:
+        file.write("id;id_peminjam;id_gadget;tanggal_peminjaman;jumlah")
+    
+    filename = "data/gadget_return_history.csv"
+    with open (filename, 'w') as file:
+        file.write("id;id_pengambil;id_gadget;tanggal_peminjaman;jumlah")
+
 def readFile(filename):
     with open (filename, 'r') as file:
         contents = file.read()
@@ -26,31 +55,6 @@ def searchFunction(list, checkItem, message):
     else:
         return idx
 
-def makeCsv(): #membuat csv dari fucntion, cuma kepake sekali
-    filename = "data/user.csv"
-    with open (filename, 'w') as file:
-        file.write("id;username;nama;alamat;password;role")
-    
-    filename = "data/gadget.csv"
-    with open (filename, 'w') as file:
-        file.write("id;nama;deskripsi;jumlah;rarity;tahun_ditemukan")
-    
-    filename = "data/consumable.csv"
-    with open (filename, 'w') as file:
-        file.write("id;nama;deskripsi;jumlah;rarity")
-    
-    filename = "data/consumable_history.csv"
-    with open (filename, 'w') as file:
-        file.write("id;id_pengambil;id_consumable;tanggal_peminjaman;jumlah")
-    
-    filename = "data/gadget_borrow_history.csv"
-    with open (filename, 'w') as file:
-        file.write("id;id_peminjam;id_gadget;tanggal_peminjaman;jumlah")
-    
-    filename = "data/gadget_return_history.csv"
-    with open (filename, 'w') as file:
-        file.write("id;id_pengambil;id_gadget;tanggal_peminjaman;jumlah")
-
 def CSVParser(lines): #Memparse CSV ke dalam bentuk list
     listReturn = []
     text = ''
@@ -67,16 +71,20 @@ def CSVParser(lines): #Memparse CSV ke dalam bentuk list
 
     return listReturn
 
-def lineParser(*args):
+def lineParser(list):
+    
     text = ''
 
-    for arg in args:
-        text += (arg)
-        if arg:
-            text += ';'
+    for item in list:
+        text += list.get(item)
+        text += ';'
     text = text[:-1]   
 
     return text
+
+def toCSV(path, list):
+    text = lineParser(list)
+    appendFile(path, lineParser(list))
 
 def makeList (list, keyword):
     newList = []
@@ -86,10 +94,11 @@ def makeList (list, keyword):
     
     return newList
 
-def readUser():
+def readUser(folder):
     user = []
+    filename = folder
+    filename += "\\user.csv"
 
-    filename = "data/user.csv"
     with open(filename, "r") as file:
         for line in file:
             dict = {}
