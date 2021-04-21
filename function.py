@@ -55,19 +55,22 @@ def searchFunction(list, checkItem, message):
     else:
         return idx
 
-def CSVParser(lines): #Memparse CSV ke dalam bentuk list
+def CSVParser(lines): #Memparse bentuk CSV ke dalam bentuk list
     listReturn = []
     text = ''
+    idx = 1
 
     for char in lines:
         if char == ';' or char == '\n':
             listReturn.append(text)
             text = ''
-        elif char == lines[-1]:
+        elif idx == len(lines):
             text += char
             listReturn.append(text)
         else:
             text += char
+            
+        idx += 1
 
     return listReturn
 

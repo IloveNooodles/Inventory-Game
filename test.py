@@ -1,21 +1,32 @@
 from Save import *
 from Load import *
+from Gadget import*
+
 import sys
 
-user = []
+gadget = []
 Folder = foundFolder()
 
 if Folder:
     Folder = findFolder()
-    user = readUser(Folder)
 else:
     sys.exit()
 
-for i in range(len(user)):
-    print(lineParser(user[i]))
+gadget = readGadget(Folder)
 
-# print(user)
-# for i in range(len(user)):
-#     text = lineParser(user[i])
-#     print(text)
+tahun = int(input("masukan thaun: "))
+op = input("operator: ")
+
+print()
+print("Hasil pencarian: ")
+print()
+
+
+cariTahun(tahun, op, gadget[1:])
+
+
+
+
+# for i in range(len(gadget)):
+#     print(lineParser(gadget[i]))
 
