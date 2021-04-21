@@ -1,11 +1,8 @@
 from Save import *
 import sys
 
-def exit(filename, list):
-    print("Apakah anda mau melakukan penyimpaanan file yang sudah diubah? (y/n)")
-    text = input().lower()
-
+def exit(filename, list, folderName, text):
     if text == 'y':
-        save(filename, list)
+        save(filename, list, folderName)
     else:
         sys.exit()

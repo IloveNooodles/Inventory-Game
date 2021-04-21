@@ -25,6 +25,11 @@ Folder = foundFolder()
 if Folder:
     Folder = findFolder() 
     user = readUser(Folder)
+    gadget = readGadget(Folder)
+    gadgetBorrow = readGadgetBorrow(Folder)
+    gadgetReturn = readGadgetReturn(Folder)
+    consumables = readConsumables(Folder)
+    consumableHistory = readConsumableHistory(Folder)
 else:
     print("Tidak ada nama folder yang diberikan!")
     print("Usage: python kantongajaib.py <nama_folder>")
@@ -57,6 +62,14 @@ while True:
         print(f"Data telah disimpan pada folder {folderName}!")
 
     elif text == "exit":
+        print("Apakah anda mau melakukan penyimpaanan file yang sudah diubah? (y/n)")
+        text = input().lower()
+        folderName = returnFolderName()
+        makeDir(folderName)
 
         for Csv, CsvContent in zip(listFile, zipFile):
-            exit(Csv, CsvContent)
+            exit(Csv, CsvContent, folderName, text)
+        
+        sys.exit()
+        
+

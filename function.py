@@ -113,3 +113,99 @@ def readUser(folder):
             user.append(dict)
 
     return user
+
+def readGadget(folder):
+    gadget = []
+    filename = folder
+    filename += "\\gadget.csv"
+
+    with open(filename, "r") as file:
+        for line in file:
+            dict = {}
+            tempUser = CSVParser(line)
+            dict["id"] = tempUser[0]
+            dict["nama"] = tempUser[1]
+            dict["deskripsi"] = tempUser[2]
+            dict["jumlah"] = tempUser[3]
+            dict["rarity"] = tempUser[4]
+            dict["tahun_ditemukan"] = tempUser[5]
+
+            gadget.append(dict)
+
+    return gadget
+
+def readConsumables(folder):
+    array = []
+    filename = folder
+    filename += "\\consumable.csv"
+
+    with open(filename, "r") as file:
+        for line in file:
+            dict = {}
+            tempArray = CSVParser(line)
+            dict["id"] = tempArray[0]
+            dict["nama"] = tempArray[1]
+            dict["deskripsi"] = tempArray[2]
+            dict["jumlah"] = tempArray[3]
+            dict["rarity"] = tempArray[4]
+
+            array.append(dict)
+
+    return array
+
+def readConsumableHistory(folder):
+    array = []
+    filename = folder
+    filename += "\\consumable_history.csv"
+
+    with open(filename, "r") as file:
+        for line in file:
+            dict = {}
+            tempArray = CSVParser(line)
+            dict["id"] = tempArray[0]
+            dict["id_pengambil"] = tempArray[1]
+            dict["id_consumable"] = tempArray[2]
+            dict["tanggal_peminjaman"] = tempArray[3]
+            dict["jumlah"] = tempArray[4]
+
+            array.append(dict)
+
+    return array
+
+def readGadgetBorrow(folder):
+    array = []
+    filename = folder
+    filename += "\\gadget_borrow_history.csv"
+
+    with open(filename, "r") as file:
+        for line in file:
+            dict = {}
+            tempArray = CSVParser(line)
+            dict["id"] = tempArray[0]
+            dict["id_peminjam"] = tempArray[1]
+            dict["id_gadget"] = tempArray[2]
+            dict["tanggal_peminjaman"] = tempArray[3]
+            dict["jumlah"] = tempArray[4]
+
+            array.append(dict)
+
+    return array
+
+def readGadgetReturn(folder):
+    array = []
+    filename = folder
+    filename += "\\gadget_return_history.csv"
+
+    with open(filename, "r") as file:
+        for line in file:
+            dict = {}
+            tempArray = CSVParser(line)
+            dict["id"] = tempArray[0]
+            dict["id_pengambil"] = tempArray[1]
+            dict["id_gadget"] = tempArray[2]
+            dict["tanggal_peminjaman"] = tempArray[3]
+            dict["jumlah"] = tempArray[4]
+
+            array.append(dict)
+
+    return array
