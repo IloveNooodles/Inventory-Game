@@ -4,7 +4,7 @@ from Gadget import*
 
 import sys
 
-gadget = []
+consumables = []
 Folder = foundFolder()
 
 if Folder:
@@ -12,21 +12,15 @@ if Folder:
 else:
     sys.exit()
 
-gadget = readGadget(Folder)
+consumables = readConsumables(Folder)
 
-tahun = int(input("masukan thaun: "))
-op = input("operator: ")
+id = input()
 
-print()
-print("Hasil pencarian: ")
-print()
+hapusitem(consumables, id)
 
-
-cariTahun(tahun, op, gadget[1:])
+# print(consumables)
 
 
 
 
-# for i in range(len(gadget)):
-#     print(lineParser(gadget[i]))
 

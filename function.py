@@ -2,6 +2,9 @@ import os
 import sys
 import argparse
 
+from consumables import *
+from Gadget import *
+
 def makeCsv(): #membuat csv dari fucntion, cuma kepake sekali
     filename = "data/user.csv"
     with open (filename, 'w') as file:
@@ -89,7 +92,8 @@ def toCSV(path, list):
     text = lineParser(list)
     appendFile(path, lineParser(list))
 
-def makeList (list, keyword):
+def makeList(list, keyword):
+
     newList = []
 
     for i in range(len(list)):
@@ -212,3 +216,18 @@ def readGadgetReturn(folder):
             array.append(dict)
 
     return array
+
+def tambahItem(list, id):
+
+    if id[0] == 'G':
+        tambahGadget(list, id)
+    elif id[0] == 'C':
+        tambahConsumables(list, id)
+    else:
+        print("Gagal menambahkan item karena ID tidak valid")
+
+def hapusitem(list, id):
+    if id[0] == 'G':
+        hapusGadget(list, id)
+    elif id[0] == 'C':
+        hapusConsumables(list, id)

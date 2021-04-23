@@ -45,11 +45,28 @@ while True:
 
     if text == "login":
         login(Folder)
+
     elif text == "register":
         register(user)
         print(user)
+
+    elif text == "tambahitem":
+        id = input("Masukan ID: ")
+        if id[0] == 'G':
+            tambahItem(gadget, id)
+        elif id[0] == 'C':
+            tambahItem(consumables, id)
+        
+    elif text == "hapusitem":
+        id = input("Masukan ID item: ")
+        if id[0] == 'G':
+            hapusitem(gadget, id)
+        elif id[0] == 'C':
+            hapusitem(consumables, id)
+
     elif text == "help":
         help()
+
     elif text == "save":
         
         folderName = input("Masukan nama Folder penyimpanan: ")
@@ -71,5 +88,4 @@ while True:
             exit(Csv, CsvContent, folderName, text)
         
         sys.exit()
-        
 
