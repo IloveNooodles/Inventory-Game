@@ -13,22 +13,11 @@ else:
     sys.exit()
 
 gadget = readGadget(Folder)
+returnGadget = readGadgetReturn(Folder)
+borrowGadget = readGadgetBorrow(Folder)
 
-item = gadget[2]['jumlah']
-print(type(item))
+print(gadget, returnGadget, borrowGadget)
 
-item = int(item)
-print(type(item))
+mengembalikanGadget(gadget, borrowGadget, returnGadget, "1")
 
-print(item)
-
-id = input()
-
-ubahItem(gadget, id)
-
-print(gadget)
-
-
-
-
-
+print(gadget, returnGadget, borrowGadget)

@@ -50,7 +50,6 @@ while True:
         userFile = login(Folder)
         idUser = str(userFile[0])
         roleUser = userFile[1]
-        print(type(idUser))
 
     elif text == "register":
         register(user)
@@ -79,7 +78,14 @@ while True:
     elif text == 'pinjam':
         id = input("Masukan ID item: ")
         pinjamGadget(gadget, gadgetBorrow, id, idUser)
-        
+    
+    elif text == 'kembalikan':
+        mengembalikanGadget(gadget, gadgetBorrow, gadgetReturn, idUser)
+
+    elif text == 'minta':
+        id = input("Masukan ID item: ")
+        memintaConsumables(consumables, consumableHistory, id, idUser)
+
     elif text == "help":
         help()
 

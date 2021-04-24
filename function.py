@@ -209,10 +209,9 @@ def readGadgetReturn(folder):
             dict = {}
             tempArray = CSVParser(line)
             dict["id"] = tempArray[0]
-            dict["id_pengambil"] = tempArray[1]
-            dict["id_gadget"] = tempArray[2]
-            dict["tanggal_peminjaman"] = tempArray[3]
-            dict["jumlah"] = tempArray[4]
+            dict["id_peminjaman"] = tempArray[1]
+            dict["tanggal_peminjaman"] = tempArray[2]
+            dict["jumlah_peminjaman"] = tempArray[3]
 
             array.append(dict)
 

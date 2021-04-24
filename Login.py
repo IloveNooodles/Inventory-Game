@@ -18,7 +18,6 @@ def login(folder):
     if checkPassword == password:
         print()
         print(f"Halo {username}! Selamat datang di Kantong Ajaib")
-        print()
 
     else:
         print("Username atau password salah!")
@@ -41,4 +40,3 @@ def login(folder):
         print(f"Halo {username}! Selamat datang di Kantong Ajaib")
     
     return (idUser, roleUser)
-   

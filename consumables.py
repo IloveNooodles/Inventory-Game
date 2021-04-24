@@ -88,3 +88,42 @@ def ubahConsumables(listConsumables, id):
     
     if not found:
         print("Tidak ada item dengan ID tersebut.")
+
+
+def memintaConsumables(listConsumables, listConsumableReturn, id, idUser):
+
+    listId = []
+    found = False
+
+    for i in range(len(listConsumables)):
+        listId.append(listConsumables[i]['id'])
+    
+    for i in range(len(listId)):
+        if id == listId[i]:
+            found = True
+
+            jumlah = int(input("Jumlah: "))
+
+            if jumlah > int(listConsumables[i]['jumlah']):
+                print("Gagal diambil karena stok kurang!")
+            
+            else:
+                tanggalPermintaan = input("Tanggal permintaan: ")
+                print(f"Item {listConsumables[i]['nama']} (x{jumlah}) telah berhasil diambil!")
+
+                listConsumables[i]['jumlah'] = str(int(listConsumables[i]['jumlah']) - jumlah)
+
+                newId = str(len(listConsumableReturn))
+
+                dict = {
+                    'id' : newId,
+                    'id_pengambil' : idUser,
+                    'id_consumable' : id,
+                    'tanggal_peminjaman' : tanggalPermintaan,
+                    'jumlah' : str(jumlah)
+                }
+
+                listConsumableReturn.append(dict)
+
+    if not found:
+        print("Tidak ada item dengan ID tersebut.")
