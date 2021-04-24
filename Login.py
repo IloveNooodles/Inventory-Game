@@ -6,10 +6,14 @@ def login(folder):
 
     listUser = readUser(folder)
     checkPassword = ''
+    idUser = ''
+    roleUser = ''
 
     for i in range(len(listUser)):
                 if username == listUser[i]['username']:
                     checkPassword = listUser[i]['password']
+                    idUser = str(i)
+                    roleUser = listUser[i]['role']
 
     if checkPassword == password:
         print()
@@ -27,6 +31,7 @@ def login(folder):
             for i in range(len(listUser)):
                 if username == listUser[i]['username']:
                     checkPassword = listUser[i]['password']
+                    idUser = str(i)
 
             if (checkPassword != password):
                 print("Username atau password salah!")
@@ -34,5 +39,6 @@ def login(folder):
 
         print()
         print(f"Halo {username}! Selamat datang di Kantong Ajaib")
-        print()
+    
+    return (idUser, roleUser)
    

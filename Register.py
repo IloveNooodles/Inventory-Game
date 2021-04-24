@@ -29,7 +29,6 @@ def register(listUser):
 
     print()
     print(f"User {username} telah berhasil register kedalam Kantong Ajaib.")
-    print()
 
     listUser.append(tempDict)
     return listUser

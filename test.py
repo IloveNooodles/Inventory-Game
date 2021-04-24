@@ -4,7 +4,7 @@ from Gadget import*
 
 import sys
 
-consumables = []
+gadget = []
 Folder = foundFolder()
 
 if Folder:
@@ -12,13 +12,21 @@ if Folder:
 else:
     sys.exit()
 
-consumables = readConsumables(Folder)
+gadget = readGadget(Folder)
+
+item = gadget[2]['jumlah']
+print(type(item))
+
+item = int(item)
+print(type(item))
+
+print(item)
 
 id = input()
 
-hapusitem(consumables, id)
+ubahItem(gadget, id)
 
-# print(consumables)
+print(gadget)
 
 
 

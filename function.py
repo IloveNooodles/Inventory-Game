@@ -193,6 +193,7 @@ def readGadgetBorrow(folder):
             dict["id_gadget"] = tempArray[2]
             dict["tanggal_peminjaman"] = tempArray[3]
             dict["jumlah"] = tempArray[4]
+            dict["is_returned"] = tempArray[5]
 
             array.append(dict)
 
@@ -231,3 +232,13 @@ def hapusitem(list, id):
         hapusGadget(list, id)
     elif id[0] == 'C':
         hapusConsumables(list, id)
+    else:
+        print("Gagal menghapus item karena ID tidak valid")
+
+def ubahItem(list, id):
+    if id[0] == 'G':
+        ubahGadget(list, id)
+    elif id[0] == 'C':
+        ubahConsumables(list, id)
+    else:
+        print("Gagal mengubah item karena ID tidak valid")

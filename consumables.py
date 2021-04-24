@@ -58,3 +58,33 @@ def hapusConsumables(listConsumables, id):
     
     if not found:
         print("Tidak ada item dengan ID tersebut.")
+
+def ubahConsumables(listConsumables, id):
+
+    listID = []
+    found = False
+
+    for i in range(len(listConsumables)):
+        listID.append(listConsumables[i]['id'])
+    
+    for i in range(1, len(listID)):
+        if id == listID[i]:
+            found = True
+
+            Jumlah = int(input("Masukan jumlah: "))
+
+            if Jumlah + int(listConsumables[i]['jumlah']) >= 0:
+                listConsumables[i]['jumlah'] = str(int(listConsumables[i]['jumlah']) + Jumlah)
+
+                if Jumlah >= 0:
+                    print(f"{Jumlah} {listConsumables[i]['nama']} berhasil ditambahkan. Stok sekarang: {listConsumables[i]['jumlah']}")
+                else:
+                    print(f"{Jumlah} {listConsumables[i]['nama']} berhasil dibuang Stok sekarang: {listConsumables[i]['jumlah']}")
+
+                break
+
+            else:
+                print(f"{-Jumlah} {listConsumables[i]['nama']} gagal dibuang karena stok kurang. Stok sekarang: {listConsumables[i]['jumlah']} (< {-Jumlah})")
+    
+    if not found:
+        print("Tidak ada item dengan ID tersebut.")

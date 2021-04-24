@@ -127,4 +127,77 @@ def hapusGadget(listGadget, id):
 
     if not found:
         print("Tidak ada item dengan ID tersebut.")
-        
+
+def ubahGadget(listGadget, id):
+
+    listID = []
+    found = False
+
+    for i in range(len(listGadget)):
+        listID.append(listGadget[i]['id'])
+    
+    for i in range(1, len(listID)):
+        if id == listID[i]:
+            found = True
+
+            Jumlah = int(input("Masukan jumlah: "))
+
+            if Jumlah + int(listGadget[i]['jumlah']) >= 0:
+                listGadget[i]['jumlah'] = str(int(listGadget[i]['jumlah']) + Jumlah)
+
+                if Jumlah >= 0:
+                    print(f"{Jumlah} {listGadget[i]['nama']} berhasil ditambahkan. Stok sekarang: {listGadget[i]['jumlah']}")
+                else:
+                    print(f"{Jumlah} {listGadget[i]['nama']} berhasil dibuang Stok sekarang: {listGadget[i]['jumlah']}")
+
+                break
+
+            else:
+                print(f"{-Jumlah} {listGadget[i]['nama']} gagal dibuang karena stok kurang. Stok sekarang: {listGadget[i]['jumlah']} (< {-Jumlah})")
+    
+    if not found:
+        print("Tidak ada item dengan ID tersebut.")
+
+def pinjamGadget(listGadget, listPinjamGadget, id, idUser):
+
+    listID = []
+    found = False
+    idPinjam = str(len(listPinjamGadget))
+    isPinjam = "False"
+
+    for i in range(len(listGadget)):
+        listID.append(listGadget[i]['id'])
+    
+    for i in range(1, len(listID)):
+        if id == listID[i]:
+            found = True
+
+            tanggal = input("Tanggal peminjaman: ")
+            Jumlah = int(input("Jumlah peminjaman: "))
+
+            if Jumlah > int(listGadget[i]['jumlah']):
+                print("Stok barang yang dipinjam kurang! ")
+                break
+            else:
+                listGadget[i]['jumlah'] = str(int(listGadget[i]['jumlah']) - Jumlah)
+
+                print() 
+                print(f"Item {listGadget[i]['nama']} (x{Jumlah}) berhasil dipinjam!")
+            
+            dict = {
+                'id' : idPinjam,
+                'id_peminjam' : idUser,
+                'id_gadget' : id,
+                'tanggal_peminjaman' : tanggal,
+                'jumlah' : str(Jumlah),
+                'is_returned' : isPinjam
+            }
+
+            listPinjamGadget.append(dict)
+    
+    if not found:
+        print("Tidak ada item dengan ID tersebut.")
+
+# def mengembalikanGadget(listGadget, ):
+
+    

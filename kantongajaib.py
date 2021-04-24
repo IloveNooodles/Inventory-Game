@@ -21,6 +21,9 @@ print("Loading...")
 print()
 
 Folder = foundFolder()
+UserFile = ''
+idUser = ''
+roleUser = ''
 
 if Folder:
     Folder = findFolder() 
@@ -44,11 +47,13 @@ while True:
     print()
 
     if text == "login":
-        login(Folder)
+        userFile = login(Folder)
+        idUser = str(userFile[0])
+        roleUser = userFile[1]
+        print(type(idUser))
 
     elif text == "register":
         register(user)
-        print(user)
 
     elif text == "tambahitem":
         id = input("Masukan ID: ")
@@ -64,6 +69,17 @@ while True:
         elif id[0] == 'C':
             hapusitem(consumables, id)
 
+    elif text == "ubahitem":
+        id = input("Masukan ID item: ")
+        if id[0] == 'G':
+            ubahItem(gadget, id)
+        elif id[0] == 'C':
+            ubahItem(consumables, id)
+    
+    elif text == 'pinjam':
+        id = input("Masukan ID item: ")
+        pinjamGadget(gadget, gadgetBorrow, id, idUser)
+        
     elif text == "help":
         help()
 

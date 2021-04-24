@@ -1,1 +1,4 @@
-id;id_peminjam;id_gadget;tanggal_peminjaman;jumlah
+id;id_peminjam;id_gadget;tanggal_peminjaman;jumlah;is_returned
+1;1;G5;25/12/2010;1;False
+2;4;G7;24/04/2021;1;False
+3;1;G2;24/04/2021;1;False
