@@ -1,6 +1,7 @@
 import os
 import sys
 import argparse
+import datetime
 
 from consumables import *
 from Gadget import *
@@ -172,7 +173,7 @@ def readConsumableHistory(folder):
             dict["id"] = tempArray[0]
             dict["id_pengambil"] = tempArray[1]
             dict["id_consumable"] = tempArray[2]
-            dict["tanggal_peminjaman"] = tempArray[3]
+            dict["tanggal_pengambilan"] = tempArray[3]
             dict["jumlah"] = tempArray[4]
 
             array.append(dict)
@@ -210,7 +211,7 @@ def readGadgetReturn(folder):
             tempArray = CSVParser(line)
             dict["id"] = tempArray[0]
             dict["id_peminjaman"] = tempArray[1]
-            dict["tanggal_peminjaman"] = tempArray[2]
+            dict["tanggal_pengembalian"] = tempArray[2]
             dict["jumlah_peminjaman"] = tempArray[3]
 
             array.append(dict)

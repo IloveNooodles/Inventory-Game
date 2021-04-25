@@ -1,4 +1,9 @@
 import datetime
+from Function import *
+
+def sortDateTimeGadget(list):
+    list.sort(key = lambda date : datetime.datetime.strptime(date, "%d/%m/%Y"), reverse = True)
+    return list
 
 def GadgetCsvParser(lines): #Memparse bentuk CSV ke dalam bentuk list
     listReturn = []
@@ -45,6 +50,157 @@ def formatGadget(list):
     print(f"Rarity\t\t: {rarity}")
     print(f"Tahun Ditemukan\t: {tahunDitemukan}")
     print()
+
+def formatPinjamGadget(list):
+    
+    counter = 0
+
+    for i in range(len(list)):
+
+        counter += 1
+
+        idPeminjaman = list[i][0]
+        namaPengambil = list[i][1]
+        NamaGadget = list[i][2]
+        TanggalPeminjaman = list[i][3]
+        Jumlah = str(list[i][4])
+
+        print(f"ID Peminjaman\t\t: {idPeminjaman}")
+        print(f"Nama Pengambil\t\t: {namaPengambil}")
+        print(f"Nama Gadget\t\t: {NamaGadget}")
+        print(f"Tanggal Peminjaman\t: {TanggalPeminjaman}")
+        print(f"Jumlah\t\t\t: {Jumlah}")
+        print()
+
+        if i == len(list):
+            break
+
+        if counter%5 == 0:
+            text = input("Apakah ingin dilanjutkan (Y/N)? ").upper()
+            if text == 'N':
+                break
+
+            print()
+
+def formatReturnGadget(list):
+    
+    counter = 0
+
+    for i in range(len(list)):
+
+        counter += 1
+
+        idPengembalian = list[i][0]
+        namaPengambil = list[i][1]
+        NamaGadget = list[i][2]
+        TanggalPeminjaman = list[i][3]
+        Jumlah = str(list[i][4])
+
+        print(f"ID Pengembalian\t\t: {idPengembalian}")
+        print(f"Nama Pengambil\t\t: {namaPengambil}")
+        print(f"Nama Gadget\t\t: {NamaGadget}")
+        print(f"Tanggal Pengembalian\t: {TanggalPeminjaman}")
+        print(f"Jumlah peminjaman\t: {Jumlah}")
+        print()
+
+        if i == len(list):
+            break
+
+        if counter%5 == 0:
+            text = input("Apakah ingin dilanjutkan (Y/N)? ").upper()
+            if text == 'N':
+                break
+
+            print()
+
+def RiwayatPinjamGadget(listBorrowGadget, listUser, listGadget):
+    
+    index = returnIndexBorrowGadgetDate(listBorrowGadget)
+
+    idpeminjam = []
+    namaPengambil = []
+    idGadget = []
+    idpinjam = []
+    namaGadget = []
+    tanggal = []
+    jumlah = []
+
+    for i in range(len(index)):
+        idpeminjam.append(listBorrowGadget[index[i]]['id_peminjam'])
+        idGadget.append(listBorrowGadget[index[i]]['id_gadget'])
+        idpinjam.append(listBorrowGadget[index[i]]['id'])
+        tanggal.append(listBorrowGadget[index[i]]['tanggal_peminjaman'])
+        jumlah.append(listBorrowGadget[index[i]]['jumlah'])
+    
+    for i in range(len(idpeminjam)):
+        for j in range(1, len(listUser)):
+            if idpeminjam[i] == listUser[j]['id']:
+                namaPengambil.append(listUser[j]['nama'])
+    
+    for i in range(len(idGadget)):
+        for j in range(1, len(listGadget)):
+            if idGadget[i] == listGadget[j]['id']:
+                namaGadget.append(listGadget[j]['nama'])
+
+    listTempAll = []
+
+    for i in range(len(idpinjam)):
+        tempAll = []
+        tempAll.append(idpinjam[i])
+        tempAll.append(namaPengambil[i])
+        tempAll.append(namaGadget[i])
+        tempAll.append(tanggal[i])
+        tempAll.append(jumlah[i])
+        listTempAll.append(tempAll)
+
+    formatPinjamGadget(listTempAll)
+
+def RiwayatReturnGadget(listReturnGadget, listBorrowGadget, listUser, listGadget):
+    
+    index = returnIndexReturnGadgetDate(listReturnGadget)
+    idpeminjaman = []
+    namaPengambil = []
+    idGadget = []
+    idpengembalian = []
+    namaGadget = []
+    tanggal = []
+    jumlah = []
+    idUser = []
+
+    for i in range(len(index)):
+        idpeminjaman.append(listReturnGadget[index[i]]['id_peminjaman'])
+        idpengembalian.append(listReturnGadget[index[i]]['id'])
+        tanggal.append(listReturnGadget[index[i]]['tanggal_pengembalian'])
+        jumlah.append(listReturnGadget[index[i]]['jumlah_peminjaman'])
+
+    for i in range(len(idpeminjaman)):
+        for j in range(1, len(listBorrowGadget)):
+            if idpeminjaman[i] == listBorrowGadget[j]['id']:
+                idGadget.append(listBorrowGadget[j]['id_gadget'])
+                idUser.append(listBorrowGadget[j]['id_peminjam'])
+
+    for i in range(len(idUser)):
+        for j in range(1, len(listUser)):
+            if idUser[i] == listUser[j]['id']:
+                namaPengambil.append(listUser[j]['nama'])
+    
+    for i in range(len(idGadget)):
+        for j in range(1, len(listGadget)):
+            if idGadget[i] == listGadget[j]['id']:
+                namaGadget.append(listGadget[j]['nama'])
+
+    listTempAll = []
+
+    for i in range(len(idpengembalian)):
+        tempAll = []
+        tempAll.append(idpengembalian[i])
+        tempAll.append(namaPengambil[i])
+        tempAll.append(namaGadget[i])
+        tempAll.append(tanggal[i])
+        tempAll.append(jumlah[i])
+        listTempAll.append(tempAll)
+
+    formatReturnGadget(listTempAll)
 
 def cariRarity(list, rarity):
 
@@ -204,8 +360,8 @@ def pinjamGadget(listGadget, listPinjamGadget, id, idUser):
     
     for i in range(len(listPinjamGadget)):
         if id == listPinjamGadget[i]['id_gadget']:
-            flag = True
             if idUser == listPinjamGadget[i]['id_peminjam']:
+                flag = True
                 if 'False' == listPinjamGadget[i]['is_returned']:
                     isReturned = False
                 elif 'True' == listPinjamGadget[i]['is_returned']:
@@ -220,6 +376,9 @@ def pinjamGadget(listGadget, listPinjamGadget, id, idUser):
         
             break
     
+    if not flag:
+        canContinue = True
+
     if canContinue:
 
         for i in range(1, len(listID)):
@@ -281,6 +440,56 @@ def returnIDGadget(list, idUser):
     
     return (idGadget, listId)
 
+def returnIndexBorrowGadgetDate(listBorrowGadget):
+    
+    tempDate = []
+    tempIndex = []
+
+    for i in range(1, len(listBorrowGadget)):
+        tempDate.append(listBorrowGadget[i]['tanggal_peminjaman'])
+    
+    sortDateTimeGadget(tempDate)
+
+    for i in range(len(tempDate)):
+        for j in range(1, len(listBorrowGadget)):
+            if tempDate[i] == listBorrowGadget[j]['tanggal_peminjaman']:
+                tempIndex.append(j)
+
+    newTempIndex = []
+
+    for item in tempIndex:
+        if item in newTempIndex:
+            pass
+        else:
+            newTempIndex.append(item)
+
+    return newTempIndex
+
+def returnIndexReturnGadgetDate(listReturnGadget):
+    
+    tempDate = []
+    tempIndex = []
+
+    for i in range(1, len(listReturnGadget)):
+        tempDate.append(listReturnGadget[i]['tanggal_pengembalian'])
+    
+    sortDateTimeGadget(tempDate)
+
+    for i in range(len(tempDate)):
+        for j in range(1, len(listReturnGadget)):
+            if tempDate[i] == listReturnGadget[j]['tanggal_pengembalian']:
+                tempIndex.append(j)
+
+    newTempIndex = []
+
+    for item in tempIndex:
+        if item in newTempIndex:
+            pass
+        else:
+            newTempIndex.append(item)
+
+    return newTempIndex
+
 def mengembalikanGadget(listGadget, listBorrowGadget, listReturnGadget, idUser):
 
     temp = returnIDGadget(listBorrowGadget, idUser)
@@ -323,9 +532,4 @@ def mengembalikanGadget(listGadget, listBorrowGadget, listReturnGadget, idUser):
     else:
         print("Kembalikan item sesuai jumlahnya!")
 
-
-                    # def riwayatPinjamGadget(listBorrowGadget):
-
-
-                    # def riwayatPengembalianGadget(listReturnGadget):
 

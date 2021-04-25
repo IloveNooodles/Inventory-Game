@@ -1,10 +1,10 @@
 from Save import *
 from Load import *
 from Gadget import*
+from Function import *
 
 import sys
 
-gadget = []
 Folder = foundFolder()
 
 if Folder:
@@ -12,12 +12,14 @@ if Folder:
 else:
     sys.exit()
 
-gadget = readGadget(Folder)
-returnGadget = readGadgetReturn(Folder)
-borrowGadget = readGadgetBorrow(Folder)
+consumableHistory = readConsumableHistory(Folder)
+consumable = readConsumables(Folder)
+user = readUser(Folder)
 
-print(gadget, returnGadget, borrowGadget)
+RiwayatAmbilConsumables(consumableHistory, user, consumable)
 
-mengembalikanGadget(gadget, borrowGadget, returnGadget, "1")
 
-print(gadget, returnGadget, borrowGadget)
+
+
+
+

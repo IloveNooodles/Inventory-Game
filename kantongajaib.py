@@ -96,6 +96,15 @@ while True:
         id = input("Masukan ID item: ")
         memintaConsumables(consumables, consumableHistory, id, idUser)
 
+    elif text == 'riwayatpinjam':
+        RiwayatPinjamGadget(gadgetBorrow, user, gadget)
+    
+    elif text == 'riwayatkembali':
+        RiwayatReturnGadget(gadgetReturn, gadgetBorrow, user, gadget)
+
+    elif text == 'riwayatambil':
+        RiwayatAmbilConsumables(consumableHistory, user, consumables)
+
     elif text == "help":
         help()
 
@@ -113,6 +122,10 @@ while True:
     elif text == "exit":
         print("Apakah anda mau melakukan penyimpaanan file yang sudah diubah? (y/n)")
         text = input().lower()
+
+        if text == 'n':
+            sys.exit()
+
         folderName = returnFolderName()
         makeDir(folderName)
 
