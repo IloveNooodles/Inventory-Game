@@ -53,7 +53,10 @@ while True:
         roleUser = userFile[1]
 
     elif text == "register":
-        register(user)
+        if roleUser == 'admin':
+            register(user)
+        else:
+            print("Hanya admin yang bisa register")
 
     elif text == 'carirarity':
         searchRarity = input("Masukan Rarity: ")
@@ -65,48 +68,78 @@ while True:
         cariTahun(tahun, kategori, gadget)
 
     elif text == "tambahitem":
-        id = input("Masukan ID: ")
-        if id[0] == 'G':
-            tambahItem(gadget, id)
-        elif id[0] == 'C':
-            tambahItem(consumables, id)
+        if roleUser == 'admin':
+            id = input("Masukan ID: ")
+            if id[0] == 'G':
+                tambahItem(gadget, id)
+            elif id[0] == 'C':
+                tambahItem(consumables, id)
+        else:
+            print("Hanya Admin yang bisa menambah item")
         
     elif text == "hapusitem":
-        id = input("Masukan ID item: ")
-        if id[0] == 'G':
-            hapusitem(gadget, id)
-        elif id[0] == 'C':
-            hapusitem(consumables, id)
+        if roleUser == 'admin':
+            id = input("Masukan ID item: ")
+            if id[0] == 'G':
+                hapusitem(gadget, id)
+            elif id[0] == 'C':
+                hapusitem(consumables, id)
+        else:
+            print("Hanya Admin yang bisa menghapus item")
 
     elif text == "ubahitem":
-        id = input("Masukan ID item: ")
-        if id[0] == 'G':
-            ubahItem(gadget, id)
-        elif id[0] == 'C':
-            ubahItem(consumables, id)
+        if roleUser == 'admin':
+            id = input("Masukan ID item: ")
+            if id[0] == 'G':
+                ubahItem(gadget, id)
+            elif id[0] == 'C':
+                ubahItem(consumables, id)
+        else:
+            print("Hanya admin yang bisa mengubah item")
     
     elif text == 'pinjam':
-        id = input("Masukan ID item: ")
-        pinjamGadget(gadget, gadgetBorrow, id, idUser)
+        if roleUser == 'user':
+            id = input("Masukan ID item: ")
+            pinjamGadget(gadget, gadgetBorrow, id, idUser)
+        else:
+            print("Hanya user yang bisa meminjam gadget")
     
     elif text == 'kembalikan':
-        mengembalikanGadget(gadget, gadgetBorrow, gadgetReturn, idUser)
+        if roleUser == 'user':
+            mengembalikanGadget(gadget, gadgetBorrow, gadgetReturn, idUser)
+        else:
+            print("Hanya user yang bisa mengembalikan gadget")
 
     elif text == 'minta':
-        id = input("Masukan ID item: ")
-        memintaConsumables(consumables, consumableHistory, id, idUser)
+        if roleUser == 'user':
+            id = input("Masukan ID item: ")
+            memintaConsumables(consumables, consumableHistory, id, idUser)
+        else:
+            print("Hanya user yang bisa meminjam gadget")
 
     elif text == 'riwayatpinjam':
-        RiwayatPinjamGadget(gadgetBorrow, user, gadget)
-    
+        if roleUser == 'admin':
+            RiwayatPinjamGadget(gadgetBorrow, user, gadget)
+        else:
+            print("Hanya admin yang bisa melihat riwayat pinjam")
+
     elif text == 'riwayatkembali':
-        RiwayatReturnGadget(gadgetReturn, gadgetBorrow, user, gadget)
+        if roleUser == 'admin':
+            RiwayatReturnGadget(gadgetReturn, gadgetBorrow, user, gadget)
+        else:
+            print("Hanya admin yang bisa melihat riwayat kembali")
 
     elif text == 'riwayatambil':
-        RiwayatAmbilConsumables(consumableHistory, user, consumables)
+        if roleUser == 'admin':
+            RiwayatAmbilConsumables(consumableHistory, user, consumables)
+        else:
+            print("Hanya admin yang bisa melihat riwayat ambil")
 
     elif text == "help":
-        help()
+        if roleUser == 'admin':
+            help(1)
+        else:
+            help(2)
 
     elif text == "save":
         
