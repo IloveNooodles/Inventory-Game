@@ -1,4 +1,35 @@
-from Function import *
+import datetime
+
+def GadgetCsvParser(lines): #Memparse bentuk CSV ke dalam bentuk list
+    listReturn = []
+    text = ''
+    idx = 1
+
+    for char in lines:
+        if char == ';' or char == '\n':
+            listReturn.append(text)
+            text = ''
+        elif idx == len(lines):
+            text += char
+            listReturn.append(text)
+        else:
+            text += char
+            
+        idx += 1
+
+    return listReturn
+
+def lineParserGadget(list):
+
+    text = ''
+
+    for item in list:
+        text += list.get(item)
+        text += ';'
+    text = text[:-1]   
+
+    return text
+
 
 def formatGadget(list):
 
@@ -19,13 +50,13 @@ def cariRarity(list, rarity):
 
     for i in range(len(list)):
         if rarity == list[i]['rarity']:
-            formatGadget(CSVParser(lineParser(list[i])))
+            formatGadget(GadgetCsvParser(lineParserGadget(list[i])))
 
 def cariTahun(tahun, operator, list):
 
     found = False
 
-    for i in range(len(list)):
+    for i in range(1, len(list)):
 
         keyTahun = list[i]["tahun_ditemukan"]
         valueTahun = int(keyTahun)
@@ -33,31 +64,31 @@ def cariTahun(tahun, operator, list):
         if operator == '=':
             
             if tahun == valueTahun:
-                formatGadget(CSVParser(lineParser(list[i])))
+                formatGadget(GadgetCsvParser(lineParserGadget(list[i])))
                 found = True
 
         elif operator == '>':
             
             if valueTahun > tahun:
-                formatGadget(CSVParser(lineParser(list[i])))
+                formatGadget(GadgetCsvParser(lineParserGadget(list[i])))
                 found = True
 
         elif operator == '>=':
             
             if valueTahun >= tahun:
-                formatGadget(CSVParser(lineParser(list[i])))
+                formatGadget(GadgetCsvParser(lineParserGadget(list[i])))
                 found = True
 
         elif operator == '<':
             
             if valueTahun < tahun:
-                formatGadget(CSVParser(lineParser(list[i])))
+                formatGadget(GadgetCsvParser(lineParserGadget(list[i])))
                 found = True
 
         elif operator == '<=':
             
             if valueTahun <= tahun:
-                formatGadget(CSVParser(lineParser(list[i])))
+                formatGadget(GadgetCsvParser(lineParserGadget(list[i])))
                 found = True
 
     if not found:
@@ -292,4 +323,9 @@ def mengembalikanGadget(listGadget, listBorrowGadget, listReturnGadget, idUser):
     else:
         print("Kembalikan item sesuai jumlahnya!")
 
-    
+
+                    # def riwayatPinjamGadget(listBorrowGadget):
+
+
+                    # def riwayatPengembalianGadget(listReturnGadget):
+

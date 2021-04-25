@@ -13,6 +13,7 @@ def help():
     print(f'riwayatpinjam - untuk melihat riwayat pinjam')
     print(f'riwayatkembali - untuk melihat riwayat pengembalian')
     print(f'riwayatambil - untuk melihat riwayat ambil')
+    print(f'save - untuk mengesave program')
     print(f'exit - untuk keluar dari program')
     print()
     

@@ -4,7 +4,8 @@ from Help import *
 from Login import *
 from Exit import *
 from Save import *
-
+from Gadget import *
+from consumables import *
 
 import sys
 
@@ -53,6 +54,15 @@ while True:
 
     elif text == "register":
         register(user)
+
+    elif text == 'carirarity':
+        searchRarity = input("Masukan Rarity: ")
+        cariRarity(gadget, searchRarity)
+    
+    elif text == 'caritahun':
+        tahun = int(input("Masukan Tahun: "))
+        kategori = input("Masukan kategori: ")
+        cariTahun(tahun, kategori, gadget)
 
     elif text == "tambahitem":
         id = input("Masukan ID: ")
