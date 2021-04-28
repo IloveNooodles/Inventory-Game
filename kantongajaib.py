@@ -60,11 +60,13 @@ while True:
 
     elif text == 'carirarity':
         searchRarity = input("Masukan Rarity: ")
+        print()
         cariRarity(gadget, searchRarity)
     
     elif text == 'caritahun':
         tahun = int(input("Masukan Tahun: "))
         kategori = input("Masukan kategori: ")
+        print()
         cariTahun(tahun, kategori, gadget)
 
     elif text == "tambahitem":

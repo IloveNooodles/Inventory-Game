@@ -7,7 +7,7 @@ def help(idx):
         print(f'caritahun - melakukan pencarian gadget berdasarkan tahun ditemukan')
         print(f'tambahitem - untuk melakukan penambahan item')
         print(f'hapusitem - untuk menghapus suatu item pada database')
-        print(f'ubahjumlah - digunakan untuk mengubah jumlah gadget dan consumable')
+        print(f'ubahitem - digunakan untuk mengubah jumlah gadget dan consumable')
         print(f'riwayatpinjam - untuk melihat riwayat pinjam')
         print(f'riwayatkembali - untuk melihat riwayat pengembalian')
         print(f'riwayatambil - untuk melihat riwayat ambil')
