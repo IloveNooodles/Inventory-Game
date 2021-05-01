@@ -32,6 +32,3 @@ def register(listUser):
 
     listUser.append(tempDict)
     return listUser
-
-    # content = lineParser(id, username, nama, alamat, password, role)
-    # appendFile(filename, content)

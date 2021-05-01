@@ -31,6 +31,7 @@ def login(folder):
                 if username == listUser[i]['username']:
                     checkPassword = listUser[i]['password']
                     idUser = str(i)
+                    roleUser = listUser[i]['role']
 
             if (checkPassword != password):
                 print("Username atau password salah!")

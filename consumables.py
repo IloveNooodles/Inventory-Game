@@ -52,7 +52,6 @@ def hapusConsumables(listConsumables, id):
 
             if text == 'Y':
                 listConsumables.remove(listConsumables[i])
-                print(listConsumables)
                 print()
                 print("Item telah berhasil dihapus dari database.")
             else:

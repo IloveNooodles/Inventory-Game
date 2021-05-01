@@ -1,5 +1,5 @@
 def help(idx):
-    print(f'========= HELP =========')
+    print(f'=================== HELP ==================')
     if idx == 1:
         print(f'login - untuk melakukan login ke dalam sistem')
         print(f'register - untuk melakukan registrasi user baru')
@@ -13,16 +13,16 @@ def help(idx):
         print(f'riwayatambil - untuk melihat riwayat ambil')
     
     else:
+        print(f'login - untuk melakukan login ke dalam sistem')
         print(f'carirarity - untuk mencari gadget dengan rarity tertentu')
         print(f'caritahun - melakukan pencarian gadget berdasarkan tahun ditemukan')
         print(f'pinjam - digunakan untuk memnijam gadget')
-        print(f'kembalikan - untuk mengemebalikan gadget')
+        print(f'kembalikan - untuk mengembalikan gadget')
         print(f'minta - untuk meminta consumable yang tersedia')
         
     print(f'help - untuk menampilkan list command')
     print(f'save - untuk mengesave program')
     print(f'exit - untuk keluar dari program')
-    print()   
     
     
     

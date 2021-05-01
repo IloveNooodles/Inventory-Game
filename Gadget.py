@@ -357,15 +357,17 @@ def pinjamGadget(listGadget, listPinjamGadget, id, idUser):
 
     for i in range(len(listGadget)):
         listID.append(listGadget[i]['id'])
-    
+
     for i in range(len(listPinjamGadget)):
         if id == listPinjamGadget[i]['id_gadget']:
-            if idUser == listPinjamGadget[i]['id_peminjam']:
-                flag = True
-                if 'False' == listPinjamGadget[i]['is_returned']:
-                    isReturned = False
-                elif 'True' == listPinjamGadget[i]['is_returned']:
-                    isReturned = True
+            for j in range(len(listPinjamGadget)):
+                if idUser == listPinjamGadget[j]['id_peminjam']:
+                    flag = True
+                    if 'False' == listPinjamGadget[j]['is_returned']:
+                        isReturned = False
+                    elif 'True' == listPinjamGadget[j]['is_returned']:
+                        isReturned = True
+                        break
 
             if isReturned:
                 canContinue = True
@@ -375,7 +377,7 @@ def pinjamGadget(listGadget, listPinjamGadget, id, idUser):
                 canContinue = True
         
             break
-    
+        
     if not flag:
         canContinue = True
 
@@ -496,40 +498,51 @@ def mengembalikanGadget(listGadget, listBorrowGadget, listReturnGadget, idUser):
     idGadget = temp[0]
     listIndexBorrowGadget = temp[1]
     listIndexGadget = []
+    listNomor = []
         
     for i in range(len(idGadget)):
         index = returnIndexGadget(listGadget, idGadget[i])
         listIndexGadget.append(index)
+        listNomor.append(i+1)
         print(f"{i+1}. {listGadget[index]['nama']}")
 
-    print()
-
-    nomorPinjam = int(input("Masukan nomor peminjaman: "))
-    jumlahSementara = listBorrowGadget[int(listIndexBorrowGadget[nomorPinjam - 1])]['jumlah']
-    tanggalPengembalian = input("Tanggal pengembalian: ")
-    jumlahPengembalian = int(input("Masukan jumlah pengembalian: "))
-
-
-    if jumlahPengembalian <= int(jumlahSementara):
-        listGadget[int(listIndexGadget[nomorPinjam - 1])]['jumlah'] = str(int(listGadget[int(listIndexGadget[nomorPinjam - 1])]['jumlah']) + jumlahPengembalian)
-        listBorrowGadget[listIndexBorrowGadget[nomorPinjam - 1]]['jumlah'] = str(int(listBorrowGadget[listIndexBorrowGadget[nomorPinjam - 1]]['jumlah']) - jumlahPengembalian)
-
-        if int(jumlahSementara) - jumlahPengembalian == 0:
-            listBorrowGadget[listIndexBorrowGadget[nomorPinjam - 1]]['is_returned'] = 'True'
-
-        id = len(listReturnGadget)
-        idPeminjaman = listBorrowGadget[int(listIndexBorrowGadget[nomorPinjam - 1])]['id']
-
-        tempDict = {
-            'id' : str(id),
-            'id_peminjaman' : idPeminjaman,
-            'tanggal_pengembalian' : tanggalPengembalian,
-            'jumlah_peminjaman' : str(jumlahPengembalian)
-        }
-
-        listReturnGadget.append(tempDict)
+    if len(listIndexGadget) == 0:
+        print("Tidak ada barang yang dipinjam")
 
     else:
-        print("Kembalikan item sesuai jumlahnya!")
+        print()
+        nomorPinjam = int(input("Masukan nomor peminjaman: "))
+        if nomorPinjam in listNomor:
+            jumlahSementara = listBorrowGadget[int(listIndexBorrowGadget[nomorPinjam - 1])]['jumlah']
+            tanggalPengembalian = input("Tanggal pengembalian: ")
+            jumlahPengembalian = int(input("Masukan jumlah pengembalian: "))
+
+
+            if jumlahPengembalian <= int(jumlahSementara):
+                listGadget[int(listIndexGadget[nomorPinjam - 1])]['jumlah'] = str(int(listGadget[int(listIndexGadget[nomorPinjam - 1])]['jumlah']) + jumlahPengembalian)
+                listBorrowGadget[listIndexBorrowGadget[nomorPinjam - 1]]['jumlah'] = str(int(listBorrowGadget[listIndexBorrowGadget[nomorPinjam - 1]]['jumlah']) - jumlahPengembalian)
+
+                if int(jumlahSementara) - jumlahPengembalian == 0:
+                    listBorrowGadget[listIndexBorrowGadget[nomorPinjam - 1]]['is_returned'] = 'True'
+
+                id = len(listReturnGadget)
+                idPeminjaman = listBorrowGadget[int(listIndexBorrowGadget[nomorPinjam - 1])]['id']
+
+                print()
+                print(f"Item {listGadget[listIndexGadget[nomorPinjam - 1]]['nama']} (x{jumlahPengembalian}) telah dikembalikan")
+
+                tempDict = {
+                    'id' : str(id),
+                    'id_peminjaman' : idPeminjaman,
+                    'tanggal_pengembalian' : tanggalPengembalian,
+                    'jumlah_peminjaman' : str(jumlahPengembalian)
+                }
+                
+                listReturnGadget.append(tempDict)
+
+            else:
+                print("Kembalikan item sesuai jumlahnya!")
+        else:
+            print("Nomor tidak ada")
 
 

@@ -44,7 +44,7 @@ zipFile = [user, gadget, gadgetReturn, gadgetBorrow, consumables, consumableHist
 while True:
     
     print()
-    text = input().lower()
+    text = input("Masukan Perintah: ").lower()
     print()
 
     if text == "login":
@@ -76,6 +76,8 @@ while True:
                 tambahItem(gadget, id)
             elif id[0] == 'C':
                 tambahItem(consumables, id)
+            else:
+                print("Id tidak valid")
         else:
             print("Hanya Admin yang bisa menambah item")
         
@@ -86,6 +88,8 @@ while True:
                 hapusitem(gadget, id)
             elif id[0] == 'C':
                 hapusitem(consumables, id)
+            else:
+                print("Id tidak valid")
         else:
             print("Hanya Admin yang bisa menghapus item")
 
@@ -96,6 +100,8 @@ while True:
                 ubahItem(gadget, id)
             elif id[0] == 'C':
                 ubahItem(consumables, id)
+            else:
+                print("Id tidak valid")
         else:
             print("Hanya admin yang bisa mengubah item")
     
@@ -155,7 +161,7 @@ while True:
         print(f"Data telah disimpan pada folder {folderName}!")
 
     elif text == "exit":
-        print("Apakah anda mau melakukan penyimpaanan file yang sudah diubah? (y/n)")
+        print("Apakah anda mau melakukan penyimpanan file yang sudah diubah? (y/n)")
         text = input().lower()
 
         if text == 'n':
@@ -168,4 +174,6 @@ while True:
             exit(Csv, CsvContent, folderName, text)
         
         sys.exit()
+    else:
+        print("Perintah tidak tersedia silahkan lihat daftar perintah!")
 

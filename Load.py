@@ -31,4 +31,5 @@ def findFolder():
 
     if args.folder in directory:
         print(f'Selamat datang di "Kantong Ajaib!"')
+        print(f"Ketik help untuk melihat list Command yang tersedia")
         return loadFolder()
