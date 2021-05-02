@@ -359,24 +359,20 @@ def pinjamGadget(listGadget, listPinjamGadget, id, idUser):
         listID.append(listGadget[i]['id'])
 
     for i in range(len(listPinjamGadget)):
-        if id == listPinjamGadget[i]['id_gadget']:
-            for j in range(len(listPinjamGadget)):
-                if idUser == listPinjamGadget[j]['id_peminjam']:
-                    flag = True
-                    if 'False' == listPinjamGadget[j]['is_returned']:
-                        isReturned = False
-                    elif 'True' == listPinjamGadget[j]['is_returned']:
-                        isReturned = True
-                        break
+        if idUser == listPinjamGadget[i]['id_peminjam'] and id == listPinjamGadget[i]['id_gadget']:
+            flag = True
+            if 'False' == listPinjamGadget[i]['is_returned']:
+                isReturned = False
+            elif 'True' == listPinjamGadget[i]['is_returned']:
+                isReturned = True
+                break
 
-            if isReturned:
-                canContinue = True
-            elif not isReturned:
-                canContinue = False
-            elif isReturned == "":
-                canContinue = True
-        
-            break
+    if isReturned:
+        canContinue = True
+    elif not isReturned:
+        canContinue = False
+    elif isReturned == '':
+        canContinue = True
         
     if not flag:
         canContinue = True
@@ -392,6 +388,9 @@ def pinjamGadget(listGadget, listPinjamGadget, id, idUser):
 
                 if Jumlah > int(listGadget[i]['jumlah']):
                     print("Stok barang yang dipinjam kurang! ")
+                    break
+                elif Jumlah < 0:
+                    print("Tidak bisa meminjam barang negaive!!")
                     break
                 else:
                     listGadget[i]['jumlah'] = str(int(listGadget[i]['jumlah']) - Jumlah)
@@ -414,7 +413,7 @@ def pinjamGadget(listGadget, listPinjamGadget, id, idUser):
             print("Tidak ada item dengan ID tersebut.")
 
     else:
-        print("Tidak bisa meminjam, kemabalikan dulu barang-nya!")
+        print("Tidak bisa meminjam, kembalikan dulu barang-nya!")
 
 def returnIndexGadget(listGadget, id):
 

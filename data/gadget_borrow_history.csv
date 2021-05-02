@@ -8,3 +8,5 @@ id;id_peminjam;id_gadget;tanggal_peminjaman;jumlah;is_returned
 7;9;G5;25/04/2021;1;False
 8;6;G1;27/05/2021;0;True
 9;9;G3;02/12/2021;0;True
+10;9;G1;02/05/2021;0;True
+11;14;G1;02/05/2021;0;True

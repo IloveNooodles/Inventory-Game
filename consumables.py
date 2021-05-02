@@ -106,7 +106,8 @@ def memintaConsumables(listConsumables, listConsumableReturn, id, idUser):
 
             if jumlah > int(listConsumables[i]['jumlah']):
                 print("Gagal diambil karena stok kurang!")
-            
+            elif jumlah < 0:
+                print("Tidak bisa meminta barang negative")
             else:
                 tanggalPermintaan = input("Tanggal permintaan: ")
                 print(f"Item {listConsumables[i]['nama']} (x{jumlah}) telah berhasil diambil!")
